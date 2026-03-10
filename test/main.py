@@ -105,17 +105,31 @@ def goodToken(c:str):
 
 
 
-def step(tks:list[token]):
+def step(tks:list[token], prio:list[int]):
     ################## Look one by one for the less priority, and build it
-    list_prio = [x.prio for x in tks]
     
-    imin = list_prio.index(min(list_prio))
+    pmin = min(prio)
+    imin = prio.index(pmin)
 
-    if imin == len(list_prio)-1: return Exception("On est à bout")
+
+
+
+
+
+
+
+    
+    imin = prio.index(min(prio))
+
+    if imin == len(prio)-1: return tks, Exception("On est à bout")
     
     ## Check for two spaces
-    if list_prio[imin] == 0 and list_prio[imin+1]==0:
-        return tks[:imin] + [space()] + tks[imin+2:]
+    if prio[imin] == 0 and prio[imin+1]==0:
+        return tks[:imin] + [space((tks[imin].val, tks[imin+1].val), 0)] + tks[imin+2:], None
+    
+
+
+    return tks, Exception("Rien à faire")
 
 
 
@@ -125,7 +139,7 @@ class tokenizer:
         self.tokenize()
 
     def tokenize(self):
-        self.tokens = [goodToken(x) for x in list(self.text)]+[token("\0")]
+        self.tokens = [goodToken(x) for x in list(self.text)]+[Other("\0", 1000)]
         print(self.tokens)
 
 
@@ -134,9 +148,13 @@ class tokenizer:
         self.cp = []
         while len(self.tokens)!=1 and self.tokens!=self.cp:
             self.cp = self.tokens[:]
+            pmin=-1
+            list_prio = [x.prio for x in self.tokens]
+            pmin = min([x for x in list_prio if x>pmin])
 
-            self.tokens = step(self.tokens)
-
+            self.tokens, exc = step(self.tokens, list_prio)
+            if exc: print(exc)
+        
 
 
 
