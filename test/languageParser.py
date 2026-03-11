@@ -11,6 +11,12 @@ class Parser:
         pseudoTree = tokenizer.parsedTree
         if pseudoTree is None: raise Exception("Bon, c'est pas très précis, mais il y a une erreur quelque part dans ton schéma")
         
+        ### Bon, ici le problème c'est qu'on se retrouve avec un arbre tout pas beau,
+        # parce que j'ai été incapable de faire quelquechose de correct sur le parser
+        # Et donc, il faut tout regarder encore un petit peu pour le clarifier
+        # Le passer sous une forme un peu plus viable (Tree)
+        # De là, 
+        print("")
         
 
 
