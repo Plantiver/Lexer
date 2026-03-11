@@ -390,7 +390,6 @@ if __name__ == "__main__":
 
 
 """
-
 Okkk, dans l'idée, je voudrais que ça fasse:
  - delimiter avant et après et definitionSign
  - forme délimité
@@ -401,6 +400,5 @@ Okkk, dans l'idée, je voudrais que ça fasse:
  - expressions
  - Definition and DeliDefi
  - Definitions
-
 """
 
